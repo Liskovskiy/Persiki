@@ -1,34 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour, IDamageable, IMovable
 {
-    [SerializeField] private float _speed = 5f;
-    [SerializeField] private Vector2 _direction;
-    [SerializeField] private Rigidbody2D _rigidbody;
+    private PlayerMovement _playerMovement;
     public void Initialize()
     {
         Debug.Log("Player Init");
+        ComponentInit();
     }
 
-    public void FixedUpdate()
+    private void ComponentInit()
     {
-        MoveInternal();
+        /* PlayerMovement component start init */
+
+        _playerMovement = GetComponentInChildren<PlayerMovement>();
+        if (_playerMovement != null) _playerMovement.Initialize();
+        else Debug.Log("Missing PlayerMovement!");
+
+        /* PlayerMovement component end init */
     }
 
     public void Move(Vector2 direction)
     {
-        _direction = direction;
+        if (_playerMovement != null) _playerMovement.SetMoveDirection(direction);
     }
 
     public void TakeDamage(int damage)
     {
         Debug.Log("Player take damage");
-    }
-
-    private void MoveInternal()
-    {
-        _rigidbody.velocity = _direction * _speed;
     }
 }
