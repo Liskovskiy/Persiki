@@ -25,7 +25,6 @@ public class MovementInputHandler : MonoBehaviour
     private void ReadDirection()
     {
         var direction = _gameInput.Gameplay.Movement.ReadValue<Vector2>();
-        var isoDirection = new Vector2(direction.x, direction.y * 0.5f);
-        _movable.MoveEvent(isoDirection);
+        _movable.MoveEvent(direction);
     }
 }
