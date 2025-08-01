@@ -2,27 +2,25 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IDamageable, IMovable
 {
+    private PlayerFsm _playerFsm;
     private PlayerMovement _playerMovement;
     public void Initialize()
     {
         Debug.Log("Player Init");
-        ComponentInit();
-    }
-
-    private void ComponentInit()
-    {
-        /* PlayerMovement component start init */
-
         _playerMovement = GetComponentInChildren<PlayerMovement>();
-        if (_playerMovement != null) _playerMovement.Initialize();
-        else Debug.Log("Missing PlayerMovement!");
+        _playerMovement.Initialize();
 
-        /* PlayerMovement component end init */
+        _playerFsm = new PlayerFsm(_playerMovement.MoveToDirection);
     }
 
-    public void Move(Vector2 direction)
+    private void Update()
     {
-        if (_playerMovement != null) _playerMovement.SetMoveDirection(direction);
+        _playerFsm.FsmRun();
+    }
+
+    public void MoveEvent(Vector2 direction)
+    {
+        _playerFsm.PlayerDirectionUpdate(direction);
     }
 
     public void TakeDamage(int damage)

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Windows;
 
-public class CharacterMovementInputController : MonoBehaviour
+public class MovementInputHandler : MonoBehaviour
 {
     private IMovable _movable;
     private GameInput _gameInput;
@@ -26,6 +26,6 @@ public class CharacterMovementInputController : MonoBehaviour
     {
         var direction = _gameInput.Gameplay.Movement.ReadValue<Vector2>();
         var isoDirection = new Vector2(direction.x, direction.y * 0.5f);
-        _movable.Move(isoDirection);
+        _movable.MoveEvent(isoDirection);
     }
 }

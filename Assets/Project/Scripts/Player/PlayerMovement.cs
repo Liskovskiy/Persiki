@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Player movement Init");
         _rigidbody = GetComponentInParent<Rigidbody2D>();
     }
-    public void SetMoveDirection(Vector2 direction)
+    public void MoveToDirection(Vector2 direction)
     {
         _direction = direction;
     }
