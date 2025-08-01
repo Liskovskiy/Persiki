@@ -10,6 +10,7 @@ public class Player : MonoBehaviour, IDamageable, IMovable
         _playerMovement = GetComponentInChildren<PlayerMovement>();
         _playerMovement.Initialize();
 
+
         _playerFsm = new PlayerFsm(_playerMovement.MoveToDirection);
     }
 
