@@ -15,6 +15,11 @@ public class MovementInputHandler : MonoBehaviour
         _gameInput.Enable();
        
     }
+    private void OnDestroy()
+    {
+        _gameInput.Dispose();
+    }
+
 
     private void Update()
     {

@@ -2,13 +2,13 @@ using System;
 using UnityEngine;
 using UnityHFSM;
 
-public class PlayerFsm
+public class PlayerMoveFsm
 {
     private StateMachine _fsm;
     private PlayerMovementData _playerMovementFsmData;
     private Action<Vector2> _moveToDirectionMethod;
 
-    public PlayerFsm(Action<Vector2> MoveToDir)
+    public PlayerMoveFsm(Action<Vector2> MoveToDir)
     {
         _moveToDirectionMethod = MoveToDir;
 
