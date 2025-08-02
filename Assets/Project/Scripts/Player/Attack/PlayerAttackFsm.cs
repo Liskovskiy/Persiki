@@ -8,11 +8,11 @@ public class PlayerAttackFsm
 {
     private StateMachine _fsm;
     private PlayerAttackData _playerAttackFsmData;
-    private Action<Vector2> _AttackMethod;
+    private Action<Vector2> OnAttackRequest;
 
     public PlayerAttackFsm(Action<Vector2> Attack)
     {
-        _AttackMethod = Attack;
+        OnAttackRequest = Attack;
 
         _fsm = new StateMachine();
 
@@ -39,6 +39,12 @@ public class PlayerAttackFsm
         _fsm.OnLogic();
     }
 
+    public void TargetPositionUpdate(Vector2 newTargetPosition)
+    {
+        _playerAttackFsmData.TargetPosition = newTargetPosition;
+        _playerAttackFsmData.HasTarget = true;
+    }
+
     private void FsmPassiveStateEnter()
     {
         Debug.Log("Passive onEnter");
@@ -54,27 +60,31 @@ public class PlayerAttackFsm
     private void FsmAttackStateEnter()
     {
         Debug.Log("Attack onEnter");
+        _playerAttackFsmData.AttackStatus = EAttackStatus.InProgress;
+        OnAttackRequest(_playerAttackFsmData.TargetPosition);
     }
     private void FsmAttackState()
     {
         Debug.Log("Attack onLogic");
+        _playerAttackFsmData.AttackStatus = EAttackStatus.Finished;
     }
     private void FsmAttackStateExit()
     {
+        _playerAttackFsmData.HasTarget = false;
         Debug.Log("Attack onExit");
     }
 
     private bool FsmTransitionGuardPassiveToAttack(Transition<string> transition)
     {
         bool isTransitionAllowed = false;
-
+        if(_playerAttackFsmData.HasTarget) isTransitionAllowed = true;
         return isTransitionAllowed;
     }
 
     private bool FsmTransitionGuardAttackToPassive(Transition<string> transition)
     {
         bool isTransitionAllowed = false;
-
+        if (_playerAttackFsmData.AttackStatus == EAttackStatus.Finished) isTransitionAllowed = true;
         return isTransitionAllowed;
     }
 

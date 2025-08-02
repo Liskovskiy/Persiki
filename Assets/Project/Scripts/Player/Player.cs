@@ -34,7 +34,7 @@ public class Player : MonoBehaviour, IDamageable, IMovable, IAttackable
 
     public void AttackEvent(Vector2 targetPosition)
     {
-        Debug.Log($"Target Position: {targetPosition}");
+        _playerAttackFsm.TargetPositionUpdate(targetPosition);
     }
 
     public void TakeDamage(int damage)
