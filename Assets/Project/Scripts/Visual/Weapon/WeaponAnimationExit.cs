@@ -37,5 +37,6 @@ public class WeaponAnimationExit : StateMachineBehaviour
     {
         Debug.Log("Attack animation finished!");
         animator.ResetTrigger("AttackEvent");
+        AttackManager.Instance.AttackResponse();
     }
 }

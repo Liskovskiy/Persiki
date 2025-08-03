@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3659543071255322171}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.40137565, w: 0.9159135}
+  m_LocalRotation: {x: 0, y: 0, z: -0.40137225, w: 0.9159151}
   m_LocalPosition: {x: -0.17879827, y: -0.638857, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -64,10 +64,10 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.3570345, y: 0.2425232}
+  m_Offset: {x: -0.22895864, y: -0.04665333}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -78,7 +78,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2969675, y: 1.4850464}
+  m_Size: {x: 0.24593472, y: 1.2504369}
   m_EdgeRadius: 0
 --- !u!114 &3860363556962031292
 MonoBehaviour:
@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 5340367427640109051}
   - component: {fileID: 3598870472147407260}
   - component: {fileID: 1199651253867661437}
+  - component: {fileID: 4854833225820883271}
   m_Layer: 10
   m_Name: SwordArt
   m_TagString: Untagged
@@ -118,13 +119,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9203420523519895309}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.35639983, y: 0.23739997, z: 0}
-  m_LocalScale: {x: 0.28718197, y: 1.4748, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.99938893, w: 0.034953892}
+  m_LocalPosition: {x: -0.1443, y: 0.7486, z: 0}
+  m_LocalScale: {x: 2.1779385, y: 2.5170135, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8689910837806307153}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 175.994}
 --- !u!212 &3598870472147407260
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -166,9 +167,8 @@ SpriteRenderer:
   m_SortingLayerID: -44025399
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
-    type: 3}
-  m_Color: {r: 0, g: 0.17198515, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: f9cdd1844b02d4c81989b265d121a78a, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -199,6 +199,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4854833225820883271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9203420523519895309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a9024c62945e454eb79c644b9b117ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9214445549646680819
 GameObject:
   m_ObjectHideFlags: 0

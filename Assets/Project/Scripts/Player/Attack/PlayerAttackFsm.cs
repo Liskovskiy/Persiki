@@ -8,11 +8,9 @@ public class PlayerAttackFsm
 {
     private readonly StateMachine _fsm;
     private PlayerAttackData _playerAttackFsmData;
-    private readonly Action<Vector2> OnAttackRequest;
 
-    public PlayerAttackFsm(Action<Vector2> Attack)
+    public PlayerAttackFsm()
     {
-        OnAttackRequest = Attack;
 
         _fsm = new StateMachine();
 
@@ -31,6 +29,8 @@ public class PlayerAttackFsm
         _fsm.AddTransition("Passive", "Attack", FsmTransitionGuardPassiveToAttack);
         _fsm.AddTransition("Attack", "Passive", FsmTransitionGuardAttackToPassive);
 
+        AttackManager.Instance.OnAttackResponse += AttackFinished;
+
         _fsm.Init();
     }
 
@@ -39,6 +39,10 @@ public class PlayerAttackFsm
         _fsm.OnLogic();
     }
 
+    public void AttackFinished()
+    {
+        _playerAttackFsmData.AttackStatus = EAttackStatus.Finished;
+    }
     public void TargetPositionUpdate(Vector2 newTargetPosition)
     {
         _playerAttackFsmData.TargetPosition = newTargetPosition;
@@ -61,12 +65,11 @@ public class PlayerAttackFsm
     {
         Debug.Log("Attack onEnter");
         _playerAttackFsmData.AttackStatus = EAttackStatus.InProgress;
-        OnAttackRequest(_playerAttackFsmData.TargetPosition);
+        AttackManager.Instance.AttackRequest(_playerAttackFsmData.TargetPosition);
     }
     private void FsmAttackState()
     {
         Debug.Log("Attack onLogic");
-        _playerAttackFsmData.AttackStatus = EAttackStatus.Finished;
     }
     private void FsmAttackStateExit()
     {
