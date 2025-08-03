@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class PlayerAttackFsm
 {
-    private StateMachine _fsm;
+    private readonly StateMachine _fsm;
     private PlayerAttackData _playerAttackFsmData;
-    private Action<Vector2> OnAttackRequest;
+    private readonly Action<Vector2> OnAttackRequest;
 
     public PlayerAttackFsm(Action<Vector2> Attack)
     {
