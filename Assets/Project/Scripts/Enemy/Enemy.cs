@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-    private EnemyFSM _enemyFsm;
+    public EnemyCollision enemyCollision;
+    private EnemyDamageFSM _enemyFsm;
     public void Initialize()
     {
-        _enemyFsm = new EnemyFSM();
+        enemyCollision = GetComponent<EnemyCollision>();
+        _enemyFsm = new EnemyDamageFSM(enemyCollision);
     }
     private void Update()
     {

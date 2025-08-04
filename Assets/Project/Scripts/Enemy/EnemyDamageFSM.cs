@@ -1,13 +1,16 @@
+#define DEBUG_MODE
 using System;
 using UnityEngine;
 using UnityHFSM;
 
-public class EnemyFSM
+public class EnemyDamageFSM
 {
     private StateMachine _enemyFsm;
+    private EnemyCollision _enemyCollision;
 
-     public EnemyFSM()
+     public EnemyDamageFSM(EnemyCollision enemyCollision)
     {
+        _enemyCollision = enemyCollision;
         _enemyFsm = new StateMachine();
 
         _enemyFsm.SetStartState("NoDamage");
@@ -33,65 +36,59 @@ public class EnemyFSM
         _enemyFsm.OnLogic();
     }
 
+
     private void FsmNoDamageStateEnter()
     {
+#if DEBUG_MODE
         Debug.Log("NoDamge onEnter");
+#endif
     }
 
     private void FsmNoDamageState()
     {
+#if DEBUG_MODE
         Debug.Log("NoDamge onLogic");
+#endif
     }
 
     private void FsmNoDamageStateExit()
     {
+#if DEBUG_MODE
         Debug.Log("NoDamge onExit");
+#endif
     }
 
     private void FsmGetDamageStateEnter()
     {
+#if DEBUG_MODE
         Debug.Log("GetDamage onEnter");
+#endif
     }
 
     private void FsmGetDamageState()
     {
+#if DEBUG_MODE
         Debug.Log("GetDamage onLogic");
+#endif
     }
 
     private void FsmGetDamageStateExit()
     {
+#if DEBUG_MODE
         Debug.Log("GetDamage onExit");
+#endif
     }
+    
+
 
     private bool FsmTransitionGuardNoDamageToGetDamage(Transition<string> transition)
     {
-        bool isTransitionAllowed = false;
-        // if (_enemyCollision.collisionDetected == "Player")
-        // {
-        //     isTransitionAllowed = true;
-        //     Debug.Log("Transition from NoDamage to GetDamage allowed");
-        // }
-        if(Input.GetKeyDown(KeyCode.E))
-        {
-            isTransitionAllowed = true;
-            Debug.Log("Transition from NoDamage to GetDamage allowed");
-        }
-        
-
-
-        return isTransitionAllowed;
+        return _enemyCollision.isTransitionAllowed;
     }
 
     private bool FsmTransitionGuardGetDamageToNoDamage(Transition<string> transition)
     {
-        bool isTransitionAllowed = false;
-
-         if(Input.GetKeyDown(KeyCode.Q))
-        {
-            isTransitionAllowed = true;
-            Debug.Log("Transition from NoDamage to GetDamage allowed");
-        }
-
+        bool isTransitionAllowed = !_enemyCollision.isTransitionAllowed;
         return isTransitionAllowed;
     }
 
