@@ -1,3 +1,4 @@
+//#define DEBUG_MODE
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -51,30 +52,42 @@ public class PlayerAttackFsm
 
     private void FsmPassiveStateEnter()
     {
+#if DEBUG_MODE
         Debug.Log("Passive onEnter");
+#endif
     }
     private void FsmPassiveState()
     {
+#if DEBUG_MODE
         Debug.Log("Passive onLogic");
+#endif
     }
     private void FsmPassiveStateExit()
     {
+#if DEBUG_MODE
         Debug.Log("Passive onExit");
+#endif
     }
     private void FsmAttackStateEnter()
     {
+#if DEBUG_MODE
         Debug.Log("Attack onEnter");
+#endif
         _playerAttackFsmData.AttackStatus = EAttackStatus.InProgress;
         AttackManager.Instance.AttackRequest(_playerAttackFsmData.TargetPosition);
     }
     private void FsmAttackState()
     {
+#if DEBUG_MODE
         Debug.Log("Attack onLogic");
+#endif
     }
     private void FsmAttackStateExit()
     {
         _playerAttackFsmData.HasTarget = false;
+#if DEBUG_MODE
         Debug.Log("Attack onExit");
+#endif
     }
 
     private bool FsmTransitionGuardPassiveToAttack(Transition<string> transition)
