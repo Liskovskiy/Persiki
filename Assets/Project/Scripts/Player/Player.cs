@@ -6,19 +6,15 @@ public class Player : MonoBehaviour, IDamageable, IMovable, IAttackable
     private PlayerAttackFsm     _playerAttackFsm;
 
     private PlayerMovement      _playerMovement;
-    private PlayerAttackManager _playerAttackManager;
     public void Initialize()
     {
         Debug.Log("Player Init");
-
         _playerMovement = GetComponentInChildren<PlayerMovement>();
-        _playerAttackManager = GetComponentInChildren<PlayerAttackManager>();
 
         _playerMovement.Initialize();
-        _playerAttackManager.Initialize();
 
         _playerFsm = new PlayerMoveFsm(_playerMovement.MoveToDirection);
-        _playerAttackFsm = new PlayerAttackFsm(_playerAttackManager.AttackTarget);
+        _playerAttackFsm = new PlayerAttackFsm();
     }
 
     private void Update()
@@ -34,7 +30,7 @@ public class Player : MonoBehaviour, IDamageable, IMovable, IAttackable
 
     public void AttackEvent(Vector2 targetPosition)
     {
-        Debug.Log($"Target Position: {targetPosition}");
+        _playerAttackFsm.TargetPositionUpdate(targetPosition);
     }
 
     public void TakeDamage(int damage)
