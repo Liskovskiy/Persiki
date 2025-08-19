@@ -35,6 +35,7 @@ public class Enemy : MonoBehaviour
 
     private void OnEnemyGetDamage(EnemyDamagedSignal signal)
     {
+        if (signal.Enemy != this) return;
         if (_health > 0) _health -= signal.Health;
         StartCoroutine(Flash());
     }

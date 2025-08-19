@@ -59,6 +59,9 @@ public class MeleeWeapon : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _eventBus.Invoke(new EnemyDamagedSignal(1));
+        if (collision.TryGetComponent<Enemy>(out var enemy))
+        {
+            _eventBus.Invoke(new EnemyDamagedSignal(enemy, 1));
+        }
     }
 }

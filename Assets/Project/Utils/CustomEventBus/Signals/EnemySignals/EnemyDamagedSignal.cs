@@ -3,10 +3,12 @@ namespace CustomEventBus.Signals
     public class EnemyDamagedSignal
     {
         public readonly int Health;
+        public readonly Enemy Enemy;
 
-        public EnemyDamagedSignal(int health)
+        public EnemyDamagedSignal(Enemy enemy, int damage)
         {
-            Health = health;
+            Enemy = enemy;
+            Health = damage;
         }
     }
 }
