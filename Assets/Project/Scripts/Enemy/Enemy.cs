@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Color _hitColor = Color.red;
     [SerializeField] private float _flashTime = 0.1f;
     private SpriteRenderer _spriteRenderer;
-    private EnemyFSM _enemyFsm;
+    //private EnemyFSM _enemyFsm;
     private EventBus _eventBus;
     private Color _defaultColor;
 
@@ -24,12 +24,12 @@ public class Enemy : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _eventBus = ServiceLocator.Current.Get<EventBus>();
         _eventBus.Subscribe<EnemyDamagedSignal>(OnEnemyGetDamage);
-        _enemyFsm = new EnemyFSM();
+        //_enemyFsm = new EnemyFSM();
         _defaultColor = _spriteRenderer.color;
     }
     private void Update()
     {
-        _enemyFsm.FsmRun();
+        //_enemyFsm.FsmRun();
 
     }
 
