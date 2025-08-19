@@ -21124,18 +21124,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d6991dbbdeecb1488bbf78c063d1235, type: 3}
---- !u!114 &1327539397 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2351065837212205691, guid: 6e2abfe59b70b674e8506935519a2211,
-    type: 3}
-  m_PrefabInstance: {fileID: 6756874677872516664}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6ae416481939e643a641d130553e998, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1430667078
 GameObject:
   m_ObjectHideFlags: 0
@@ -23247,7 +23235,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 2031138150}
-  _enemy: {fileID: 1327539397}
 --- !u!4 &1639202778
 Transform:
   m_ObjectHideFlags: 0
@@ -28419,7 +28406,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2031138146}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -28445,7 +28432,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2031138146}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
