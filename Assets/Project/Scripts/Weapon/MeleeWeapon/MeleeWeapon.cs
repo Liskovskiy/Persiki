@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CustomEventBus;
+using CustomEventBus.Signals;
 
 public class MeleeWeapon : MonoBehaviour
 {
     private Animator _animator;
+    private EventBus _eventBus;
     private void Start()
     {
+        _eventBus = ServiceLocator.Current.Get<EventBus>();
         _animator = GetComponentInChildren<Animator>();
         AttackManager.Instance.OnAttackRequest += Attack;
     }
@@ -21,12 +25,12 @@ public class MeleeWeapon : MonoBehaviour
         {
             if (direction.x > 0)
             {
-                transform.rotation = Quaternion.Euler(0, 0, baseAngle);
+                transform.parent.rotation = Quaternion.Euler(0, 0, baseAngle);
 
             }
             else
             {
-                transform.rotation = Quaternion.Euler(0, 180, baseAngle);
+                transform.parent.rotation = Quaternion.Euler(0, 180, baseAngle);
 
             }
         }
@@ -34,11 +38,11 @@ public class MeleeWeapon : MonoBehaviour
         {
             if (direction.y > 0)
             {
-                transform.rotation = Quaternion.Euler(0, 180, 90f + baseAngle);
+                transform.parent.rotation = Quaternion.Euler(0, 180, 90f + baseAngle);
             }
             else
             {
-                transform.rotation = Quaternion.Euler(0, 0, -90f + baseAngle);
+                transform.parent.rotation = Quaternion.Euler(0, 0, -90f + baseAngle);
             }
         }
 
@@ -51,5 +55,13 @@ public class MeleeWeapon : MonoBehaviour
     {
         SetAttackDirection(targetPosition);
         _animator.SetTrigger("AttackEvent");
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent<Enemy>(out var enemy))
+        {
+            _eventBus.Invoke(new EnemyDamagedSignal(enemy, 1));
+        }
     }
 }
