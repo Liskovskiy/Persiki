@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CustomEventBus;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
     private EnemyFSM _enemyFsm;
+    private EventBus _eventBus;
     public void Initialize()
     {
         _enemyFsm = new EnemyFSM();

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8689910837806307153}
   - component: {fileID: 3860363556962031292}
+  - component: {fileID: 4931070456188014049}
   m_Layer: 10
   m_Name: Sword
   m_TagString: Untagged
@@ -46,6 +47,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c2d49988261976478505de746056871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!68 &4931070456188014049
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3659543071255322171}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.34627342, y: 0.5848645}
+  - {x: -0.40473562, y: -0.5988968}
+  - {x: -0.27864215, y: -0.72156626}
+  - {x: -0.1406875, y: -0.615381}
+  - {x: -0.02547723, y: 0.5641683}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &9203420523519895309
 GameObject:
   m_ObjectHideFlags: 0
