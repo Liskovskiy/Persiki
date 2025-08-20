@@ -23213,7 +23213,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1639202778}
-  - component: {fileID: 1639202777}
   - component: {fileID: 1639202779}
   m_Layer: 0
   m_Name: GameController
@@ -23222,19 +23221,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1639202777
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1639202776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76218f1a06b2fb443819215008c20bdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _player: {fileID: 2031138150}
 --- !u!4 &1639202778
 Transform:
   m_ObjectHideFlags: 0
@@ -23262,6 +23248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bb683ed0481bbd4e8c08272708f858a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 2031138150}
 --- !u!1 &1662991373
 GameObject:
   m_ObjectHideFlags: 0

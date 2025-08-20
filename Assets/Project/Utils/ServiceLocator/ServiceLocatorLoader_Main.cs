@@ -8,6 +8,7 @@ namespace Examples.VerticalScrollerExample
 {
     public class ServiceLocatorLoader_Main : MonoBehaviour
     {
+        [SerializeField] private Player _player;
 
         private EventBus _eventBus;
 
@@ -23,13 +24,14 @@ namespace Examples.VerticalScrollerExample
 
         private void Init()
         {
-
+            _player.Initialize();
         }
 
         private void Register()
         {
             ServiceLocator.Initialize();
             ServiceLocator.Current.Register(_eventBus);
+            ServiceLocator.Current.Register<Player>(_player);
         }
 
         private void AddToDisposables()

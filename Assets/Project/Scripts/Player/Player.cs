@@ -1,10 +1,9 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour, IDamageable, IMovable, IAttackable
+public class Player : MonoBehaviour, IDamageable, IMovable, IAttackable , IService
 {
     private PlayerMoveFsm       _playerFsm;
     private PlayerAttackFsm     _playerAttackFsm;
-
     private PlayerMovement      _playerMovement;
     public void Initialize()
     {
@@ -36,5 +35,10 @@ public class Player : MonoBehaviour, IDamageable, IMovable, IAttackable
     public void TakeDamage(int damage)
     {
         Debug.Log("Player take damage");
+    }
+
+    public Vector2 GetPlayerPosition()
+    {
+        return (Vector2)gameObject.transform.position;
     }
 }

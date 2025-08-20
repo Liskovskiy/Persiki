@@ -4,14 +4,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private int _health = 3;
     [SerializeField] private Color _hitColor = Color.red;
     [SerializeField] private float _flashTime = 0.1f;
+
     private SpriteRenderer _spriteRenderer;
-    //private EnemyFSM _enemyFsm;
+    private EnemyMovement _enemyMovement;
     private EventBus _eventBus;
     private Color _defaultColor;
 
@@ -22,14 +24,16 @@ public class Enemy : MonoBehaviour
     public void Initialize()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _enemyMovement = GetComponent<EnemyMovement>();
+        _enemyMovement.Init();
+
         _eventBus = ServiceLocator.Current.Get<EventBus>();
+
         _eventBus.Subscribe<EnemyDamagedSignal>(OnEnemyGetDamage);
-        //_enemyFsm = new EnemyFSM();
         _defaultColor = _spriteRenderer.color;
     }
     private void Update()
     {
-        //_enemyFsm.FsmRun();
 
     }
 
@@ -37,6 +41,9 @@ public class Enemy : MonoBehaviour
     {
         if (signal.Enemy != this) return;
         if (_health > 0) _health -= signal.Health;
+
+        _enemyMovement.Knockback();
+
         StartCoroutine(Flash());
     }
 
