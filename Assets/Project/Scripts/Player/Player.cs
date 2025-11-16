@@ -1,10 +1,12 @@
 using UnityEngine;
-
-public class Player : MonoBehaviour, IDamageable, IMovable, IAttackable , IService
+using CustomEventBus;
+using CustomEventBus.Signals;
+public class Player : MonoBehaviour, IDamageable, IMovable, IService
 {
     private PlayerMoveFsm       _playerFsm;
     private PlayerAttackFsm     _playerAttackFsm;
     private PlayerMovement      _playerMovement;
+    private EventBus            _eventBus;
     public void Initialize()
     {
         Debug.Log("Player Init");
@@ -14,6 +16,10 @@ public class Player : MonoBehaviour, IDamageable, IMovable, IAttackable , IServi
 
         _playerFsm = new PlayerMoveFsm(_playerMovement.MoveToDirection);
         _playerAttackFsm = new PlayerAttackFsm();
+
+        _eventBus = ServiceLocator.Current.Get<EventBus>();
+
+        _eventBus.Subscribe<MouseAttackInputSignal>(AttackEventHandler);
     }
 
     private void Update()
@@ -26,10 +32,9 @@ public class Player : MonoBehaviour, IDamageable, IMovable, IAttackable , IServi
     {
         _playerFsm.PlayerDirectionUpdate(direction);
     }
-
-    public void AttackEvent(Vector2 targetPosition)
+    public void AttackEventHandler(MouseAttackInputSignal signal)
     {
-        _playerAttackFsm.TargetPositionUpdate(targetPosition);
+        _playerAttackFsm.TargetPositionUpdate(signal.worldPos);
     }
 
     public void TakeDamage(int damage)

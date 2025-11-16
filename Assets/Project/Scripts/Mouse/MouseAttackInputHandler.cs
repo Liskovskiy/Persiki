@@ -4,15 +4,21 @@ using TMPro;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using CustomEventBus;
+using CustomEventBus.Signals;
 
-public class AttackInputHandler : MonoBehaviour
+public class MouseAttackInputHandler : MonoBehaviour
 {
-    private IAttackable _attackable;
     private GameInput _gameInput;
+    private EventBus _eventBus;
+    private Vector3 _worldPos;
 
+    private void Start()
+    {
+        _eventBus = ServiceLocator.Current.Get<EventBus>();
+    }
     public void Awake()
     {
-        _attackable = GetComponentInParent<IAttackable>();
         _gameInput = new GameInput();
         _gameInput.Gameplay.Attack.performed += OnAttack;
         _gameInput.Enable();
@@ -21,6 +27,7 @@ public class AttackInputHandler : MonoBehaviour
     private void OnAttack(InputAction.CallbackContext obj)
     {
         ReadMousePosition();
+        _eventBus.Invoke(new MouseAttackInputSignal(_worldPos));
     }
 
     private void OnDestroy()
@@ -31,8 +38,6 @@ public class AttackInputHandler : MonoBehaviour
     private void ReadMousePosition()
     {
         Vector2 screenPos = Mouse.current.position.ReadValue();
-        Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, Camera.main.nearClipPlane));
-
-        _attackable.AttackEvent(worldPos);
+        _worldPos = Camera.main.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, Camera.main.nearClipPlane));
     }
 }
