@@ -92,3 +92,5 @@ jobs:
           labels: |
             chore
             version-bump
+          auto-merge: true
+          delete-branch: true
