@@ -114,5 +114,12 @@ jobs:
               owner,
               repo,
               pull_number: prNumber,
-              merge_method: 'merge', // або 'squash', якщо хочеш
+              merge_method: 'merge',
+            });
+            core.info(`Deleting branch ${branch}`);
+
+            await github.rest.git.deleteRef({
+              owner,
+              repo,
+              ref: `heads/${branch}`,
             });
