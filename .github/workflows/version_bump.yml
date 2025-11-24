@@ -101,10 +101,12 @@ jobs:
       - name: Merge version bump pull request
         if: ${{ steps.cpr.outputs.pull-request-number != '' }}
         uses: actions/github-script@v7
+        env:
+          PR_NUMBER: ${{ steps.cpr.outputs.pull-request-number }}
         with:
           script: |
             const { owner, repo } = context.repo;
-            const prNumber = Number('${{ steps.cpr.outputs["pull-request-number"] }}');
+            const prNumber = Number(process.env.PR_NUMBER);
 
             core.info(`Merging version bump PR #${prNumber}`);
 
@@ -112,5 +114,5 @@ jobs:
               owner,
               repo,
               pull_number: prNumber,
-              merge_method: 'merge',
+              merge_method: 'merge', // або 'squash', якщо хочеш
             });
