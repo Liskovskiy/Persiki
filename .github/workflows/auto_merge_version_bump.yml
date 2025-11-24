@@ -7,8 +7,9 @@ on:
 jobs:
   automerge:
     if: >-
-      github.actor == 'github-actions[bot]' &&
-      startsWith(github.head_ref, 'version-bump/')
+      github.event.pull_request.user.login == 'github-actions[bot]' &&
+      startsWith(github.event.pull_request.head.ref, 'version-bump/')
+
     runs-on: ubuntu-latest
 
     permissions:
