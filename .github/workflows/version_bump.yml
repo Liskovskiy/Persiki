@@ -52,11 +52,15 @@ jobs:
           BUMP_KIND="${{ steps.meta.outputs.bump_kind }}"
           echo "Bump kind: $BUMP_KIND"
 
-          if [ ! -f version.txt ]; then
-            echo "0.0.1" > version.txt
+          mkdir -p Assets/Resources
+
+          VERSION_FILE="Assets/Resources/version.txt"
+
+          if [ ! -f "$VERSION_FILE" ]; then
+            echo "0.0.1" > "$VERSION_FILE"
           fi
 
-          VERSION=$(cat version.txt | tr -d ' \n\r')
+          VERSION=$(cat "$VERSION_FILE" | tr -d ' \n\r')
           echo "Current version: $VERSION"
 
           IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
@@ -77,10 +81,11 @@ jobs:
           esac
 
           NEW_VERSION="$MAJOR.$MINOR.$PATCH"
-          echo "$NEW_VERSION" > version.txt
+          echo "$NEW_VERSION" > "$VERSION_FILE"
 
           echo "New version: $NEW_VERSION"
           echo "version=$NEW_VERSION" >> "$GITHUB_OUTPUT"
+
 
       - name: Create version bump pull request
         uses: peter-evans/create-pull-request@v6
