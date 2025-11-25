@@ -1,18 +1,21 @@
 //#define DEBUG_MODE
+using CustomEventBus;
+using CustomEventBus.Signals;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityHFSM;
 using UnityEngine;
+using UnityHFSM;
 
 public class PlayerAttackFsm
 {
     private readonly StateMachine _fsm;
+    private EventBus _eventBus;
     private PlayerAttackData _playerAttackFsmData;
 
     public PlayerAttackFsm()
     {
-
+        _eventBus = ServiceLocator.Current.Get<EventBus>();
         _fsm = new StateMachine();
 
         _fsm.SetStartState("Passive");
@@ -30,9 +33,9 @@ public class PlayerAttackFsm
         _fsm.AddTransition("Passive", "Attack", FsmTransitionGuardPassiveToAttack);
         _fsm.AddTransition("Attack", "Passive", FsmTransitionGuardAttackToPassive);
 
-        AttackManager.Instance.OnAttackResponse += AttackFinished;
-
         _fsm.Init();
+
+        _eventBus.Subscribe<PlayerAttackResponseSignal>(AttackFinished);
     }
 
     public void FsmRun()
@@ -40,7 +43,7 @@ public class PlayerAttackFsm
         _fsm.OnLogic();
     }
 
-    public void AttackFinished()
+    public void AttackFinished(PlayerAttackResponseSignal signal)
     {
         _playerAttackFsmData.AttackStatus = EAttackStatus.Finished;
     }
@@ -74,7 +77,7 @@ public class PlayerAttackFsm
         Debug.Log("Attack onEnter");
 #endif
         _playerAttackFsmData.AttackStatus = EAttackStatus.InProgress;
-        AttackManager.Instance.AttackRequest(_playerAttackFsmData.TargetPosition);
+        _eventBus.Invoke(new PlayerAttackRequestSignal(_playerAttackFsmData.TargetPosition));
     }
     private void FsmAttackState()
     {

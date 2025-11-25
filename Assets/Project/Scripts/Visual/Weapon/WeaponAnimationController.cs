@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using CustomEventBus;
+using CustomEventBus.Signals;
 public class WeaponAnimationController : StateMachineBehaviour
 {
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -13,11 +14,12 @@ public class WeaponAnimationController : StateMachineBehaviour
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        EventBus _eventBus = ServiceLocator.Current.Get<EventBus>();
         if (stateInfo.normalizedTime >= 1.0f)
         {
             //Debug.Log("Attack animation finished!");
             //animator.ResetTrigger("AttackEvent");
-            AttackManager.Instance.AttackResponse();
+            _eventBus.Invoke(new PlayerAttackResponseSignal());
         }
     }
 
