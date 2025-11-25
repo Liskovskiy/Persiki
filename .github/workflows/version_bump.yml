@@ -132,4 +132,5 @@ jobs:
     with:
       version: ${{ needs.bump.outputs.version }}
       upload_artifact: true
+      ref: main
     secrets: inherit

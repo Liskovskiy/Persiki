@@ -10,6 +10,9 @@ on:
         required: false
         type: boolean
         default: false
+      ref:
+        required: false
+        type: string
 
 jobs:
   buildForAllSupportedPlatforms:
@@ -32,6 +35,7 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
+          ref: ${{ inputs.ref }}
 
       - uses: actions/cache@v3
         with:
