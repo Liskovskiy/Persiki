@@ -124,3 +124,12 @@ jobs:
               repo,
               ref: `heads/${branch}`,
             });
+    outputs:
+      version: ${{ steps.bump.outputs.version }}
+  build:
+    needs: bump
+    uses: ./.github/workflows/Build.yml
+    with:
+      version: ${{ needs.bump.outputs.version }}
+      upload_artifact: true
+    secrets: inherit
