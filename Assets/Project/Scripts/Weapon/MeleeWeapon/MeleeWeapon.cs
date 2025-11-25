@@ -12,7 +12,8 @@ public class MeleeWeapon : MonoBehaviour
     {
         _eventBus = ServiceLocator.Current.Get<EventBus>();
         _animator = GetComponentInChildren<Animator>();
-        AttackManager.Instance.OnAttackRequest += Attack;
+
+        _eventBus.Subscribe<PlayerAttackRequestSignal>(Attack);
     }
 
     private void SetAttackDirection(Vector2 targetPosition)
@@ -49,11 +50,11 @@ public class MeleeWeapon : MonoBehaviour
     }
     void OnDisable()
     {
-        AttackManager.Instance.OnAttackRequest -= Attack;
+        _eventBus.Unsubscribe<PlayerAttackRequestSignal>(Attack);
     }
-    public void Attack(Vector2 targetPosition)
+    public void Attack(PlayerAttackRequestSignal signal)
     {
-        SetAttackDirection(targetPosition);
+        SetAttackDirection(signal.targetPosition);
         _animator.SetTrigger("AttackEvent");
     }
 
