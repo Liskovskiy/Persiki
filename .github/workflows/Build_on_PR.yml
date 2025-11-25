@@ -9,3 +9,4 @@ jobs:
     uses: ./.github/workflows/Build.yml
     with:
       upload_artifact: false
+    secrets: inherit
