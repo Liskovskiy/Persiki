@@ -5,21 +5,23 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class RangedWeapon : MonoBehaviour
+public class RangedWeapon : Weapon
 {
+    // ????????? ???? ????? ?????????? ?? ??????? ????
     private EventBus _eventBus;
     [SerializeField] private GameObject _arrow;
-    void Start()
+    public void Start()
     {
+        Init();
         _eventBus = ServiceLocator.Current.Get<EventBus>();
-        _eventBus.Subscribe<PlayerAttackRequestSignal>(Attack);
+        //_eventBus.Subscribe<PlayerAttackRequestSignal>(Attack);
     }
 
     void OnDisable()
     {
         if (_eventBus != null) _eventBus.Unsubscribe<PlayerAttackRequestSignal>(Attack);
     }
-    public void Attack(PlayerAttackRequestSignal signal)
+    public override void Attack(PlayerAttackRequestSignal signal)
     {
         Vector2 targetPosition = signal.targetPosition;
 
