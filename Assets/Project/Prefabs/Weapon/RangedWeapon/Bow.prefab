@@ -41,11 +41,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1195691048995287251}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03f9adbb21c9f04408620c7a44870011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Damage: 0
   _arrow: {fileID: 9124683996407467219, guid: f2d7c32d3df7d654b9cdce9d3afaa5c0, type: 3}
 --- !u!1 &2158847659470278778
 GameObject:
@@ -88,6 +89,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1244413346086849414}
   - component: {fileID: 5972705169914251262}
+  - component: {fileID: 8980602984985615548}
+  - component: {fileID: 677714564933253650}
+  - component: {fileID: 1308181211675329926}
   m_Layer: 10
   m_Name: BowRender
   m_TagString: Untagged
@@ -162,3 +166,52 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &8980602984985615548
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7420924143012373460}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ac19b813a5cf3184dae5f17b3ccb2647, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &677714564933253650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7420924143012373460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03f9adbb21c9f04408620c7a44870011, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 0
+  _arrow: {fileID: 9124683996407467219, guid: f2d7c32d3df7d654b9cdce9d3afaa5c0, type: 3}
+--- !u!114 &1308181211675329926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7420924143012373460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d38e76d356e43f34cbb90f0d9f9acb48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IdleStateName: Bow_idle
+  AttackStateName: Bow_attack

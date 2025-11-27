@@ -7,23 +7,21 @@ using UnityEngine;
 
 public class RangedWeapon : Weapon
 {
-    // ????????? ???? ????? ?????????? ?? ??????? ????
-    private EventBus _eventBus;
     [SerializeField] private GameObject _arrow;
+    Vector2 targetPosition;
     public void Start()
     {
-        Init();
-        _eventBus = ServiceLocator.Current.Get<EventBus>();
-        //_eventBus.Subscribe<PlayerAttackRequestSignal>(Attack);
-    }
-
-    void OnDisable()
-    {
-        if (_eventBus != null) _eventBus.Unsubscribe<PlayerAttackRequestSignal>(Attack);
+        InitWeapon();
+        _eventBus.Subscribe<RenderRangedWeaponFinishAttackSignal>(AttackFinished);
     }
     public override void Attack(PlayerAttackRequestSignal signal)
     {
-        Vector2 targetPosition = signal.targetPosition;
+        targetPosition = signal.targetPosition;
+        _eventBus.Invoke(new RenderRangedWeaponPlayAttackSignal());
+    }
+
+    public void AttackFinished(RenderRangedWeaponFinishAttackSignal signal)
+    {
 
         Vector3 spawnPos = transform.position;
 
