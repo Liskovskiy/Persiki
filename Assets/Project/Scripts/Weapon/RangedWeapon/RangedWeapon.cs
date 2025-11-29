@@ -7,17 +7,31 @@ using UnityEngine;
 
 public class RangedWeapon : Weapon
 {
-    [SerializeField] private GameObject _arrow;
-    Vector2 targetPosition;
+    [SerializeField] private GameObject _projectile;
+    private Vector2 targetPosition;
+
+    private void InitRangedWeapon()
+    {
+        _eventBus.Subscribe<RenderRangedWeaponFinishAttackSignal>(AttackFinished);
+    }
     public void Start()
     {
         InitWeapon();
-        _eventBus.Subscribe<RenderRangedWeaponFinishAttackSignal>(AttackFinished);
+        InitRangedWeapon();
     }
     public override void Attack(PlayerAttackRequestSignal signal)
     {
         targetPosition = signal.targetPosition;
         _eventBus.Invoke(new RenderRangedWeaponPlayAttackSignal());
+        targetPosition = signal.targetPosition;
+        Vector3 spawnPos = transform.position;
+        Vector2 direction = (targetPosition - (Vector2)spawnPos).normalized;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        //angle -= 90f; 
+        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        transform.rotation = rotation;
     }
 
     public void AttackFinished(RenderRangedWeaponFinishAttackSignal signal)
@@ -31,7 +45,7 @@ public class RangedWeapon : Weapon
         angle -= 90;
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-        GameObject arrowInstance = Instantiate(_arrow, spawnPos, rotation);
+        GameObject arrowInstance = Instantiate(_projectile, spawnPos, rotation);
 
         Rigidbody2D rb = arrowInstance.GetComponent<Rigidbody2D>();
         if (rb != null)
