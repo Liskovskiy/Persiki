@@ -1,19 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using CustomEventBus;
 using CustomEventBus.Signals;
 
-public class MeleeWeapon : MonoBehaviour
+public class MeleeWeapon : Weapon
 {
-    private Animator _animator;
-    private EventBus _eventBus;
     private void Start()
     {
-        _eventBus = ServiceLocator.Current.Get<EventBus>();
-        _animator = GetComponentInChildren<Animator>();
-
-        _eventBus.Subscribe<PlayerAttackRequestSignal>(Attack);
+        InitWeapon();
     }
 
     private void SetAttackDirection(Vector2 targetPosition)
@@ -48,11 +42,7 @@ public class MeleeWeapon : MonoBehaviour
         }
 
     }
-    void OnDisable()
-    {
-        _eventBus.Unsubscribe<PlayerAttackRequestSignal>(Attack);
-    }
-    public void Attack(PlayerAttackRequestSignal signal)
+    public override void Attack(PlayerAttackRequestSignal signal)
     {
         SetAttackDirection(signal.targetPosition);
         _animator.SetTrigger("AttackEvent");
