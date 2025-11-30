@@ -7,8 +7,8 @@ namespace Examples.VerticalScrollerExample
 {
     public class ServiceLocatorLoader_Main : MonoBehaviour
     {
-        [SerializeField] private Player _player;
-
+        [SerializeField] private Player               _player;
+        [SerializeField] private MousePositionHandler _mousePositionHandler;
         private EventBus _eventBus;
 
         private void Awake()
@@ -31,6 +31,7 @@ namespace Examples.VerticalScrollerExample
             ServiceLocator.Initialize();
             ServiceLocator.Current.Register(_eventBus);
             ServiceLocator.Current.Register<Player>(_player);
+            ServiceLocator.Current.Register<MousePositionHandler>(_mousePositionHandler);
         }
 
         private void AddToDisposables()
