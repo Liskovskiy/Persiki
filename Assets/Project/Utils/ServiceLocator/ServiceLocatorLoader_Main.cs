@@ -9,6 +9,7 @@ namespace Examples.VerticalScrollerExample
     {
         [SerializeField] private Player               _player;
         [SerializeField] private MousePositionHandler _mousePositionHandler;
+        [SerializeField] private WeaponSlotController _weaponSlotController;
         private EventBus _eventBus;
 
         private void Awake()
@@ -32,6 +33,7 @@ namespace Examples.VerticalScrollerExample
             ServiceLocator.Current.Register(_eventBus);
             ServiceLocator.Current.Register<Player>(_player);
             ServiceLocator.Current.Register<MousePositionHandler>(_mousePositionHandler);
+            ServiceLocator.Current.Register<WeaponSlotController>(_weaponSlotController);
         }
 
         private void AddToDisposables()

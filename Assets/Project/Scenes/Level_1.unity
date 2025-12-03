@@ -16227,6 +16227,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1308181211675329926, guid: 51644c2090ab0ad4c8af4b56cb684e31,
         type: 3}
+      propertyPath: _pivot
+      value: 
+      objectReference: {fileID: 1662991374}
+    - target: {fileID: 1308181211675329926, guid: 51644c2090ab0ad4c8af4b56cb684e31,
+        type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -23414,6 +23419,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 2031138150}
   _mousePositionHandler: {fileID: 2058680073}
+  _weaponSlotController: {fileID: 1662991375}
 --- !u!1 &1662991373
 GameObject:
   m_ObjectHideFlags: 0
@@ -23423,6 +23429,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1662991374}
+  - component: {fileID: 1662991375}
   m_Layer: 10
   m_Name: WeaponSlot
   m_TagString: Untagged
@@ -23447,6 +23454,18 @@ Transform:
   - {fileID: 1756622451}
   m_Father: {fileID: 1983295497}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1662991375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662991373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dbf2f8342d46f148b4aeba366858bb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1756622451 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4673924880370102820, guid: 51644c2090ab0ad4c8af4b56cb684e31,
