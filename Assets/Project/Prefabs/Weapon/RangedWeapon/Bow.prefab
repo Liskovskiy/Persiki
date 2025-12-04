@@ -107,13 +107,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7420924143012373460}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.99999815, w: 0.0019376551}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4673924880370102820}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180.222}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5972705169914251262
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -155,7 +155,7 @@ SpriteRenderer:
   m_SortingLayerID: -44025399
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b703d7727b08947219074023baf91225, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6a7cacb998833874fbd00abf30b8b688, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -202,3 +202,4 @@ MonoBehaviour:
   _idleClip: {fileID: 7400000, guid: 8c5b34785b84aef41ab7236d76a27ce8, type: 2}
   _attackClip: {fileID: 7400000, guid: 05921d6728bde574c87f59b1cbafe292, type: 2}
   _pinToCursore: 1
+  _bowRotateRadius: 0.5

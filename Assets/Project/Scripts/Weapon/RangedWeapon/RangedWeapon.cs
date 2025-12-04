@@ -50,7 +50,7 @@ public class RangedWeapon : Weapon
         Rigidbody2D rb = arrowInstance.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
-            rb.velocity = direction * 20f;
+            rb.velocity = direction * 30f;
         }
         Destroy(arrowInstance, 10f);
         _eventBus.Invoke(new PlayerAttackResponseSignal());
