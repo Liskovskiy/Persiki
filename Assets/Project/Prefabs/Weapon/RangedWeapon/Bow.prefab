@@ -200,6 +200,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _idleClip: {fileID: 7400000, guid: 8c5b34785b84aef41ab7236d76a27ce8, type: 2}
-  _attackClip: {fileID: 7400000, guid: 05921d6728bde574c87f59b1cbafe292, type: 2}
+  _attackClip: {fileID: 7400000, guid: 94957e814b4ee264ebd31530b7fac26f, type: 2}
   _pinToCursore: 1
   _bowRotateRadius: 0.5
