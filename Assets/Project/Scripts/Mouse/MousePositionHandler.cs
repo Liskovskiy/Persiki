@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Zenject;
 
-public class MousePositionHandler : MonoBehaviour, IService
+public class MousePositionHandler : IService, ITickable
 {
     private Vector3 _worldPos;
 
@@ -16,7 +17,8 @@ public class MousePositionHandler : MonoBehaviour, IService
         Vector2 screenPos = Mouse.current.position.ReadValue();
         _worldPos = Camera.main.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, Camera.main.nearClipPlane));
     }
-    private void FixedUpdate()
+
+    public void Tick()
     {
         ReadMousePosition();
     }

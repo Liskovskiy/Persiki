@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using CustomEventBus;
 using CustomEventBus.Signals;
+using Zenject;
 
 public class RenderRangedWeapon : RenderWeapon
 {
@@ -13,12 +14,22 @@ public class RenderRangedWeapon : RenderWeapon
                      protected bool                 _pinToTarget = false;
                      private   Transform            _pivot;    
     [SerializeField] private   float                _bowRotateRadius = 0.5f;
-    void Start()
+
+    [Inject]
+    public void Construct(MousePositionHandler mouse)
     {
+        _mousePositionHandler = mouse;
+        //_eventBus.Subscribe<RenderRangedWeaponPlayAttackSignal>(PlayAttackClip);
+        //_mousePositionHandler = ServiceLocator.Current.Get<MousePositionHandler>();
+
+        //_pivot = ServiceLocator.Current.Get<WeaponSlotController>().GetWeaponSlotTransform();
+    }
+
+    private void Start()
+    {
+        _pivot = ServiceLocator.Current.Get<WeaponSlotController>().GetWeaponSlotTransform();
         InitRenderWeapon();
         _eventBus.Subscribe<RenderRangedWeaponPlayAttackSignal>(PlayAttackClip);
-        _mousePositionHandler = ServiceLocator.Current.Get<MousePositionHandler>();
-        _pivot = ServiceLocator.Current.Get<WeaponSlotController>().GetWeaponSlotTransform();
     }
 
     public void PlayAttackClip(RenderRangedWeaponPlayAttackSignal signal)
