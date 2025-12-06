@@ -10,6 +10,7 @@ public class Render : MonoBehaviour
     protected void InitRender()
     {
         _animator = GetComponent<Animator>();
+        _currentRoutine = null;
     }
 
     protected void PlayAnimationClip(AnimationClip _animationClip, System.Action _onAnimationFinished = null, bool hasExitTime = true, int _layer = 0)

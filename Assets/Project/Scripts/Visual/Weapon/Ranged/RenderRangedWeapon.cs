@@ -10,24 +10,22 @@ public class RenderRangedWeapon : RenderWeapon
     [SerializeField] protected AnimationClip        _attackClip;
     [SerializeField] protected bool                 _pinToCursore = true;
                      private   MousePositionHandler _mousePositionHandler;
+                     private   WeaponSlotController _weaponSlotController;
                      private   Vector2              _targetPosition;
                      protected bool                 _pinToTarget = false;
                      private   Transform            _pivot;    
     [SerializeField] private   float                _bowRotateRadius = 0.5f;
 
     [Inject]
-    public void Construct(MousePositionHandler mouse)
+    public void Init(MousePositionHandler mouse, WeaponSlotController weaponSlot)
     {
         _mousePositionHandler = mouse;
-        //_eventBus.Subscribe<RenderRangedWeaponPlayAttackSignal>(PlayAttackClip);
-        //_mousePositionHandler = ServiceLocator.Current.Get<MousePositionHandler>();
-
-        //_pivot = ServiceLocator.Current.Get<WeaponSlotController>().GetWeaponSlotTransform();
+        _weaponSlotController = weaponSlot;
+        _pivot = _weaponSlotController.GetWeaponSlotTransform();
     }
 
     private void Start()
     {
-        _pivot = ServiceLocator.Current.Get<WeaponSlotController>().GetWeaponSlotTransform();
         InitRenderWeapon();
         _eventBus.Subscribe<RenderRangedWeaponPlayAttackSignal>(PlayAttackClip);
     }
