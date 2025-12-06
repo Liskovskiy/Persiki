@@ -21,8 +21,6 @@ public class Player : MonoBehaviour, IDamageable, IMovable, IService
         _playerFsm = new PlayerMoveFsm(_playerMovement.MoveToDirection);
         _playerAttackFsm = new PlayerAttackFsm(_eventBus);
 
-        //_eventBus = ServiceLocator.Current.Get<EventBus>();
-
         _eventBus.Subscribe<MouseAttackInputSignal>(AttackEventHandler);
     }
     public void Initialize()

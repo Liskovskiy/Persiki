@@ -10,7 +10,6 @@ public class EnemyMovement : MonoBehaviour
     public void Init()
     {
         _rb = GetComponent<Rigidbody2D>();
-        //_player = ServiceLocator.Current.Get<Player>();
     }
 
     public void Knockback()
