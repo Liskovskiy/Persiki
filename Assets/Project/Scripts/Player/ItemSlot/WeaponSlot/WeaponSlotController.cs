@@ -8,12 +8,6 @@ public class WeaponSlotController : MonoBehaviour, IService
 
     public Transform GetWeaponSlotTransform()
     {
-        return _slotTransform;
+        return transform;
     }
-
-    private void Awake()
-    {
-        _slotTransform = transform;
-    }
-
 }

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Zenject;
 
 public class Enemy : MonoBehaviour
 {
@@ -16,6 +17,12 @@ public class Enemy : MonoBehaviour
     private EventBus _eventBus;
     private Color _defaultColor;
 
+    [Inject]
+    public void Init(EventBus eventBus)
+    {
+        _eventBus = eventBus;
+    }
+
     private void Start()
     {
         Initialize();
@@ -25,8 +32,6 @@ public class Enemy : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _enemyMovement = GetComponent<EnemyMovement>();
         _enemyMovement.Init();
-
-        _eventBus = ServiceLocator.Current.Get<EventBus>();
 
         _eventBus.Subscribe<EnemyDamagedSignal>(OnEnemyGetDamage);
         _defaultColor = _spriteRenderer.color;

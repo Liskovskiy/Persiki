@@ -13,9 +13,9 @@ public class PlayerAttackFsm
     private EventBus _eventBus;
     private PlayerAttackData _playerAttackFsmData;
 
-    public PlayerAttackFsm()
+    public PlayerAttackFsm(EventBus eventBus)
     {
-        _eventBus = ServiceLocator.Current.Get<EventBus>();
+        _eventBus = eventBus;
         _fsm = new StateMachine();
 
         _fsm.SetStartState("Passive");

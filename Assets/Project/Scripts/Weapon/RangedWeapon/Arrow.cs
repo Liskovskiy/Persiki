@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using CustomEventBus;
 using CustomEventBus.Signals;
+using Zenject;
 
 public class Arrow : MonoBehaviour
 {
     // Start is called before the first frame update
     private EventBus _eventBus;
+
+    [Inject]
+    public void Init(EventBus eventBus)
+    {
+        _eventBus = eventBus;
+    }
     void Start()
     {
-        _eventBus = ServiceLocator.Current.Get<EventBus>();
+
     }
 
     // Update is called once per frame

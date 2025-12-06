@@ -45,7 +45,7 @@ public class RangedWeapon : Weapon
         angle -= 90;
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-        GameObject arrowInstance = Instantiate(_projectile, spawnPos, rotation);
+        GameObject arrowInstance = _container.InstantiatePrefab(_projectile, spawnPos, rotation, null);
 
         Rigidbody2D rb = arrowInstance.GetComponent<Rigidbody2D>();
         if (rb != null)

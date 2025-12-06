@@ -44,34 +44,34 @@ public class PlayerMoveFsm
 
     private void FsmIdleStateEnter()
     {
-        Debug.Log("Idle onEnter");
+        //Debug.Log("Idle onEnter");
     }
 
     private void FsmIdleState()
     {
-        Debug.Log("Idle onLogic");
+        //Debug.Log("Idle onLogic");
         _moveToDirectionMethod(Vector2.zero);
     }
 
     private void FsmIdleStateExit()
     {
-        Debug.Log("Idle onExit");
+        //Debug.Log("Idle onExit");
     }
 
     private void FsmMoveStateEnter()
     {
-        Debug.Log("Move onEnter");
+        //Debug.Log("Move onEnter");
     }
 
     private void FsmMoveState()
     {
-        Debug.Log("Move onLogic");
+        //Debug.Log("Move onLogic");
         _moveToDirectionMethod(_playerMovementFsmData.Direction);
     }
 
     private void FsmMoveStateExit()
     {
-        Debug.Log("Move onExit");
+        //Debug.Log("Move onExit");
     }
 
     private bool FsmTransitionGuardIdleToMove(Transition<string> transition)
