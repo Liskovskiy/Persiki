@@ -6,11 +6,11 @@ public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private float knockbackForce = 20f;
     private Rigidbody2D _rb;
-    private Player _player;
+    [SerializeField] private Player _player; // temp!
     public void Init()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _player = ServiceLocator.Current.Get<Player>();
+        //_player = ServiceLocator.Current.Get<Player>();
     }
 
     public void Knockback()

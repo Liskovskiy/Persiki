@@ -189,3 +189,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockbackForce: 20
+  _player: {fileID: 4285781910236698714, guid: c25e74328153e9045a732f1e6073d18d, type: 3}

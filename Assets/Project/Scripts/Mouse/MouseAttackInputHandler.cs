@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using CustomEventBus;
 using CustomEventBus.Signals;
+using Zenject;
 
 public class MouseAttackInputHandler : MonoBehaviour
 {
@@ -12,9 +13,10 @@ public class MouseAttackInputHandler : MonoBehaviour
     private EventBus _eventBus;
     private Vector3 _worldPos;
 
-    private void Start()
+    [Inject]
+    public void Init(EventBus eventBus)
     {
-        _eventBus = ServiceLocator.Current.Get<EventBus>();
+        _eventBus = eventBus;
     }
     public void Awake()
     {

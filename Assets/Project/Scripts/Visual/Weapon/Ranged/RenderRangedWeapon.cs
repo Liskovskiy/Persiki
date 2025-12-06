@@ -26,7 +26,7 @@ public class RenderRangedWeapon : RenderWeapon
 
     private void Start()
     {
-        InitRenderWeapon();
+        //InitRenderWeapon();
         _eventBus.Subscribe<RenderRangedWeaponPlayAttackSignal>(PlayAttackClip);
     }
 

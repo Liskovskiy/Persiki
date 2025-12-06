@@ -1,25 +1,33 @@
 using UnityEngine;
 using CustomEventBus;
 using CustomEventBus.Signals;
+using Zenject;
 public class Player : MonoBehaviour, IDamageable, IMovable, IService
 {
     private PlayerMoveFsm       _playerFsm;
     private PlayerAttackFsm     _playerAttackFsm;
     private PlayerMovement      _playerMovement;
     private EventBus            _eventBus;
-    public void Initialize()
+
+    [Inject]
+    public void Init(EventBus eventBus)
     {
+        _eventBus = eventBus;
         Debug.Log("Player Init");
         _playerMovement = GetComponentInChildren<PlayerMovement>();
 
         _playerMovement.Initialize();
 
         _playerFsm = new PlayerMoveFsm(_playerMovement.MoveToDirection);
-        _playerAttackFsm = new PlayerAttackFsm();
+        _playerAttackFsm = new PlayerAttackFsm(_eventBus);
 
-        _eventBus = ServiceLocator.Current.Get<EventBus>();
+        //_eventBus = ServiceLocator.Current.Get<EventBus>();
 
         _eventBus.Subscribe<MouseAttackInputSignal>(AttackEventHandler);
+    }
+    public void Initialize()
+    {
+        
     }
 
     private void Update()
